@@ -1,0 +1,16 @@
+product:
+  type: lib
+  platforms: [android, iosArm64, iosSimulatorArm64, iosX64]
+
+dependencies:
+  - ../base-lib
+  - ../model
+#  - ../database-room  # 目前 ksp 有兼容性 bug
+  - ../database-sqldelight
+  - ../datastore
+  - ../network
+  - ../location
+
+settings:
+  android:
+    namespace: dev.shuanghua.weather.repository

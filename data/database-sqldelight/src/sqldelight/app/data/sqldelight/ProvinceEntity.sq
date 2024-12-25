@@ -1,0 +1,14 @@
+CREATE TABLE provinceEntity (
+    province_name TEXT PRIMARY KEY NOT NULL
+);
+
+-- 为 name 列创建索引（尽管主键本身已经会自动创建索引，这里也可以明确创建索引）
+CREATE INDEX IF NOT EXISTS index_name ON provinceEntity(province_name);
+
+
+insertFull:
+REPLACE INTO provinceEntity (province_name) VALUES ?;
+
+selectAll:
+SELECT * FROM provinceEntity;
+

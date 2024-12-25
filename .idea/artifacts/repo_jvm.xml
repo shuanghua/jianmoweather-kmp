@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="repo-jvm">
+    <output-path>$PROJECT_DIR$/data/repo/build/libs</output-path>
+    <root id="archive" name="repo-jvm.jar">
+      <element id="module-output" name="jianmoweather.data.repo.jvmMain" />
+    </root>
+  </artifact>
+</component>

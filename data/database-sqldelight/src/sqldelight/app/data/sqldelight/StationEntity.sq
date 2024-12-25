@@ -1,0 +1,23 @@
+CREATE TABLE stationEntity (
+    districtName TEXT NOT NULL,
+    stationId TEXT PRIMARY KEY NOT NULL,
+    stationName TEXT NOT NULL,
+    isSelected TEXT NOT NULL
+);
+
+insertFull:
+INSERT INTO stationEntity (districtName, stationId, stationName, isSelected) VALUES ?;
+
+selectAll:
+SELECT * FROM stationEntity;
+
+selectByDistrictName:
+SELECT * FROM stationEntity
+WHERE districtName = ?;
+
+selectByStationName:
+SELECT * FROM stationEntity
+WHERE stationName = ?;
+
+
+

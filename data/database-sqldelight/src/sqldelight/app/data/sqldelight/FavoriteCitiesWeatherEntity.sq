@@ -1,0 +1,30 @@
+CREATE TABLE favoriteCitiesWeatherEntity (
+    cityId TEXT PRIMARY KEY NOT NULL,
+    cityName TEXT DEFAULT "" NOT NULL,
+    provinceName TEXT DEFAULT "" NOT NULL,
+    isAutoLocation TEXT DEFAULT "" NOT NULL,
+    currentT TEXT DEFAULT "" NOT NULL,
+    bgImageNew TEXT DEFAULT "" NOT NULL,
+    iconUrl TEXT DEFAULT "" NOT NULL
+);
+
+insertFull:
+REPLACE INTO favoriteCitiesWeatherEntity (
+    cityId,
+    cityName,
+    provinceName,
+    isAutoLocation,
+    currentT,
+    bgImageNew,
+    iconUrl
+)
+VALUES ?;
+
+selectAll:
+SELECT * FROM favoriteCitiesWeatherEntity;
+
+deleteByCityId:
+DELETE FROM favoriteCitiesWeatherEntity WHERE cityId = ?;
+
+deleteAll:
+DELETE FROM favoriteCitiesWeatherEntity;

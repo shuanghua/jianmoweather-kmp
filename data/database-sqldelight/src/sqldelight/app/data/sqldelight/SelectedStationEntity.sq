@@ -1,0 +1,16 @@
+CREATE TABLE selectedStationEntity (
+    screen TEXT PRIMARY KEY DEFAULT 'StationScreen',
+    stationId TEXT DEFAULT '' NOT NULL,
+    isLocation TEXT DEFAULT '1' NOT NULL,
+    districtName TEXT DEFAULT '' NOT NULL,
+    stationName TEXT DEFAULT '' NOT NULL
+);
+
+-- 为 stationId 列创建索引（这个步骤通常会自动完成，但也可以显式地定义索引）
+CREATE INDEX IF NOT EXISTS index_station_id ON selectedStationEntity(stationId);
+
+insertFull:
+REPLACE INTO selectedStationEntity (stationId, isLocation, districtName, stationName) VALUES ?;
+
+selectAll:
+SELECT * FROM selectedStationEntity;

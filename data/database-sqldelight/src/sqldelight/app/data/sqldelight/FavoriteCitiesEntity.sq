@@ -1,0 +1,18 @@
+CREATE TABLE favoriteCitiesEntity (
+    cityId TEXT PRIMARY KEY DEFAULT "" NOT NULL,
+    cityName TEXT DEFAULT "" NOT NULL,
+    provinceName TEXT DEFAULT "" NOT NULL
+);
+
+-- 索引
+CREATE INDEX cityId ON favoriteCitiesEntity(cityId);
+
+insertFull:
+INSERT INTO favoriteCitiesEntity (cityId, cityName, provinceName) VALUES ?;
+
+selectAll:
+SELECT * FROM favoriteCitiesEntity;
+
+deleteByCityId:
+DELETE FROM favoriteCitiesEntity WHERE cityId = ?;
+

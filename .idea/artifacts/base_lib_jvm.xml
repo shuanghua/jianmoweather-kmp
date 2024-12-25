@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="base-lib-jvm">
+    <output-path>$PROJECT_DIR$/data/base-lib/build/libs</output-path>
+    <root id="archive" name="base-lib-jvm.jar">
+      <element id="module-output" name="jianmoweather.data.base-lib.jvmMain" />
+    </root>
+  </artifact>
+</component>

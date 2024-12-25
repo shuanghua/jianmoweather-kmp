@@ -1,0 +1,22 @@
+CREATE TABLE exponentEntity (
+    id INTEGER PRIMARY KEY NOT NULL,
+    _cityId TEXT DEFAULT "" NOT NULL,
+    title TEXT DEFAULT "" NOT NULL,
+    level TEXT DEFAULT "" NOT NULL,
+    levelDesc TEXT DEFAULT "" NOT NULL,
+    levelAdvice TEXT DEFAULT "" NOT NULL,
+    FOREIGN KEY (_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+);
+
+-- 创建索引
+CREATE INDEX idx_exponent_cityId ON exponentEntity (_cityId);
+
+insert:
+INSERT INTO exponentEntity (id, _cityId, title, level, levelDesc, levelAdvice)
+VALUES (?, ?, ?, ?, ?, ?);
+
+insertFull:
+REPLACE INTO exponentEntity (id, _cityId, title, level, levelDesc, levelAdvice) VALUES ?;
+
+selectAll:
+SELECT * FROM exponentEntity;

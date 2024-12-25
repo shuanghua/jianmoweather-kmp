@@ -1,0 +1,34 @@
+CREATE TABLE weatherEntity (
+    cityId TEXT PRIMARY KEY DEFAULT '' NOT NULL,
+    cityName TEXT DEFAULT '' NOT NULL,
+    temperature TEXT DEFAULT '' NOT NULL,
+    description TEXT DEFAULT '' NOT NULL,
+    airQuality TEXT DEFAULT '' NOT NULL,
+    airQualityIcon TEXT DEFAULT '' NOT NULL,
+    lunarCalendar TEXT DEFAULT '' NOT NULL,
+    stationName TEXT DEFAULT '' NOT NULL,
+    stationId TEXT DEFAULT '' NOT NULL,
+    sunUp TEXT DEFAULT '' NOT NULL,
+    sunDown TEXT DEFAULT '' NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS index_cityId ON weatherEntity(cityId);
+
+insertFullWeather:
+REPLACE INTO weatherEntity (
+    cityId,
+    cityName,
+    temperature,
+    description,
+    airQuality,
+    airQualityIcon,
+    lunarCalendar,
+    stationName,
+    stationId,
+    sunUp,
+    sunDown
+)VALUES ?;
+
+selectAll:
+SELECT * FROM weatherEntity;
+

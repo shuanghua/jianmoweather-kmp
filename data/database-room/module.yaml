@@ -1,0 +1,13 @@
+product:
+  type: lib
+  platforms: [android, iosArm64, iosSimulatorArm64, iosX64]
+
+dependencies:
+  - ../base-lib
+  - ../model
+  - $libs.androidx.room.runtime
+  - $libs.androidx.sqlite.bundled
+
+#settings:
+#  kotlin:
+#    languageVersion: 2.0

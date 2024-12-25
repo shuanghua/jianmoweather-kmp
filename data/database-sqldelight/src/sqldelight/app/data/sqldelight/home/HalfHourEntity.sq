@@ -1,0 +1,10 @@
+CREATE TABLE halfHourEntity (
+    id INTEGER PRIMARY KEY,
+    _cityId TEXT NOT NULL,
+    hour TEXT NOT NULL,
+    t TEXT NOT NULL,
+    FOREIGN KEY (_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+);
+
+-- 索引
+CREATE INDEX _cityId ON halfHourEntity(_cityId);

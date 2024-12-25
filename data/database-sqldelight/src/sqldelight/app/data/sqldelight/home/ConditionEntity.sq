@@ -1,0 +1,20 @@
+CREATE TABLE conditionEntity (
+    id INTEGER PRIMARY KEY,
+    _cityId TEXT DEFAULT "" NOT NULL,
+    name TEXT DEFAULT "" NOT NULL,
+    desc TEXT DEFAULT "" NOT NULL,
+    FOREIGN KEY (_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_condition_cityId ON conditionEntity(_cityId);
+
+insert:
+INSERT INTO conditionEntity (id, _cityId, name, desc) VALUES (?, ?, ?, ?);
+
+insertFull:
+REPLACE INTO conditionEntity (id, _cityId, name, desc) VALUES ?;
+
+
+
+selectAll:
+SELECT * FROM conditionEntity;

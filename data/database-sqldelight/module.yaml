@@ -1,0 +1,22 @@
+product:
+  type: lib
+  platforms: [android, iosArm64, iosSimulatorArm64, iosX64]
+
+dependencies:
+  - ../base-lib
+  - ../model
+  - $libs.sqldelight.coroutines
+
+dependencies@android:
+  - $libs.sqldelight.androidDriver
+
+dependencies@ios:
+  - $libs.sqldelight.nativeDriver
+
+settings:
+  kotlin:
+    freeCompilerArgs: [ -Xexpect-actual-classes ]
+
+  android:
+    namespace: dev.shuanghua.weather.database.sqldelight
+

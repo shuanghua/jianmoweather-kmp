@@ -1,0 +1,28 @@
+product:
+  type: lib
+  platforms: [android, iosArm64, iosSimulatorArm64, iosX64]
+
+# 在使用 ktor-client-content-negotiation 以及 ktor-serialization-kotlinx-json 的情况下，
+# kotlinx-serialization 插件会自动被 Ktor 的 content negotiation 使用，
+# 因此无需在项目配置中额外添加 serialization-plugin
+dependencies:
+  - ../base-lib
+  - ../model
+  - io.ktor:ktor-client-core:3.0.2
+  - io.ktor:ktor-client-cio:3.0.2
+  - io.ktor:ktor-client-content-negotiation:3.0.2 # 内部包含了 kotlinx-serialization-json
+  - io.ktor:ktor-client-logging:3.0.2  # ktor 日志库
+  - io.ktor:ktor-serialization-kotlinx-json:3.0.2 # https://ktor.io/docs/client-serialization.html#serialization_dependency
+
+dependencies@android:
+  - io.ktor:ktor-client-okhttp:3.0.2
+
+dependencies@ios:
+  - io.ktor:ktor-client-darwin:3.0.2
+
+
+settings:
+  kotlin:
+    serialization: json
+  android:
+    namespace: dev.shuanghua.weather.network

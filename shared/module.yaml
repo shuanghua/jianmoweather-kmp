@@ -1,0 +1,48 @@
+product:
+  type: lib
+  platforms: [android, iosArm64, iosSimulatorArm64, iosX64]
+
+dependencies:
+  - ../data/base-lib # ../ 代表当前模块的父目录，而不是整个项目的根目录
+  - ../data/model
+  - ../data/domain
+  - ../data/repo
+  - ../data/compose-res
+
+  - $compose.foundation: exported
+  - $compose.material3: exported
+  - $compose.material: exported
+
+  - org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2: exported
+  - org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10: exported
+
+  # 在 jetbrains Compose (不是 jetpack Compose )函数中使用 Koin DI  , jetpack Compose 请使用包含 androidx 的单词,如 koin-androidx-compose
+  #  - io.insert-koin:koin-core:4.1.0-Beta1 # koin 的核心依赖，在 base-lib 模块中作为公共依赖
+  - io.insert-koin:koin-compose:4.1.0-Beta1: exported
+  - io.insert-koin:koin-compose-viewmodel:4.1.0-Beta1: exported  # 支持注入 ViewModel 到 Compose 函数中
+  - io.insert-koin:koin-compose-viewmodel-navigation:4.1.0-Beta1: exported  # 支持注入 ViewModel 到 Compose 函数中
+
+  - io.coil-kt.coil3:coil-compose:3.0.4  # 图片加载库，用于 Compose 函数中加载图片
+  - io.coil-kt.coil3:coil-network-ktor3:3.0.4 # coil3 使用 ktor3 网络库
+  - io.github.kevinnzou:compose-webview-multiplatform:1.9.40 # Compose 多平台 WebView
+
+
+dependencies@android:
+  - io.insert-koin:koin-android:4.1.0-Beta1: exported  # 注入 Android 组件
+  - com.google.accompanist:accompanist-permissions:0.29.0-alpha # 暂时,后续会使用多平台库 moko-permissions 去替换
+  - $compose.preview
+
+
+
+
+settings:
+  compose:
+    enabled: true
+
+  android:
+    namespace: dev.shuanghua.weather.shared
+
+  kotlin:
+    serialization: json
+
+

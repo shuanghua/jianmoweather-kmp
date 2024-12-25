@@ -1,0 +1,25 @@
+CREATE TABLE oneDayEntity (
+    id INTEGER PRIMARY KEY,
+    _cityId TEXT DEFAULT "" NOT NULL,
+    date TEXT DEFAULT "" NOT NULL,
+    week TEXT DEFAULT "" NOT NULL,
+    desc TEXT DEFAULT "" NOT NULL,
+    t TEXT DEFAULT "" NOT NULL,
+    minT TEXT DEFAULT "" NOT NULL,
+    maxT TEXT DEFAULT "" NOT NULL,
+    iconName TEXT DEFAULT "" NOT NULL,
+    FOREIGN KEY (_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+);
+
+-- 索引
+CREATE INDEX idx_cityId ON oneDayEntity(_cityId);
+
+insert:
+INSERT INTO oneDayEntity (id, _cityId, date, week, desc, t, minT, maxT, iconName)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+insertFull:
+REPLACE INTO oneDayEntity (id, _cityId, date, week, desc, t, minT, maxT, iconName) VALUES ?;
+
+selectAll:
+SELECT * FROM oneDayEntity ORDER BY id ASC;

@@ -1,0 +1,15 @@
+product:
+  type: lib
+  platforms: [ android, iosArm64, iosSimulatorArm64, iosX64 ]
+
+dependencies:
+  - ../base-lib
+  - ../model
+
+dependencies@android:
+  - com.amap.api:location:6.2.0: exported
+
+
+settings:
+  android:
+    namespace: dev.shuanghua.weather.location

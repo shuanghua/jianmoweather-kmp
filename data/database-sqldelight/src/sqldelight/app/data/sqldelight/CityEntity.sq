@@ -1,0 +1,15 @@
+CREATE TABLE cityEntity (
+    city_id TEXT PRIMARY KEY,
+    city_name TEXT NOT NULL,
+    province_name TEXT NOT NULL
+);
+
+-- Index for the 'id' column
+CREATE INDEX idx_city_id ON cityEntity(city_id);
+
+
+insertFull:
+REPLACE INTO cityEntity (city_id, city_name, province_name) VALUES ?;
+
+selectByProvinceName:
+SELECT * FROM cityEntity WHERE province_name =?;

@@ -1,0 +1,14 @@
+product: android/app
+
+# 支持的完整参数：https://github.com/JetBrains/amper/blob/release/0.5/docs/DSLReference.md#settings-and-test-settings
+dependencies:
+  - ../data/base-lib
+  - ../shared
+  - com.amap.api:location:6.2.0
+  - androidx.activity:activity-compose:1.7.2
+
+settings:
+  compose: enabled
+  android:
+    namespace: dev.shuanghua.weather
+

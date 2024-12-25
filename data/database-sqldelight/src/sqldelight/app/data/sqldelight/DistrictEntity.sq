@@ -1,0 +1,14 @@
+CREATE TABLE districtEntity (
+    name TEXT PRIMARY KEY
+);
+
+-- Index for the 'name' column
+CREATE INDEX idx_district_name ON districtEntity(name);
+
+insertFull:
+INSERT INTO districtEntity (name) VALUES ?;
+
+selectAll:
+SELECT * FROM districtEntity;
+
+

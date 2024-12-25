@@ -1,0 +1,24 @@
+CREATE TABLE oneHourEntity (
+    id INTEGER PRIMARY KEY NOT NULL,
+    _cityId TEXT DEFAULT '' NOT NULL,
+    hour TEXT DEFAULT '' NOT NULL,
+    t TEXT DEFAULT '' NOT NULL,
+    icon TEXT DEFAULT '' NOT NULL,
+    rain TEXT DEFAULT '' NOT NULL,
+
+    -- 外键约束
+    FOREIGN KEY(_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+);
+
+-- 为 _cityId 列创建索引
+CREATE INDEX IF NOT EXISTS index_cityId ON oneHourEntity(_cityId);
+
+insert:
+INSERT INTO oneHourEntity (id, _cityId, hour, t, icon, rain)
+VALUES (:id, :cityId, :hour, :t, :icon, :rain);
+
+insertFull:
+REPLACE INTO oneHourEntity (id, _cityId, hour, t, icon, rain) VALUES ?;
+
+selectAll:
+SELECT * FROM oneHourEntity ORDER BY id ASC ;

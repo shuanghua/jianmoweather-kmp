@@ -1,0 +1,27 @@
+CREATE TABLE favoriteStationWeatherEntity (
+    cityId TEXT DEFAULT "" NOT NULL,
+    stationName TEXT PRIMARY KEY DEFAULT "" NOT NULL,
+    temperature TEXT DEFAULT "" NOT NULL,
+    weatherStatus TEXT DEFAULT "" NOT NULL,
+    weatherIcon TEXT DEFAULT "" NOT NULL,
+    rangeT TEXT DEFAULT "" NOT NULL
+);
+
+insertFull:
+REPLACE INTO favoriteStationWeatherEntity (
+    cityId,
+    stationName,
+    temperature,
+    weatherStatus,
+    weatherIcon,
+    rangeT
+) VALUES ?;
+
+selectAll:
+SELECT * FROM favoriteStationWeatherEntity;
+
+deleteByStationName:
+DELETE FROM favoriteStationWeatherEntity WHERE stationName = ?;
+
+deleteAll:
+DELETE FROM favoriteStationWeatherEntity;

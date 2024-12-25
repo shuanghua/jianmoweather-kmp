@@ -1,0 +1,36 @@
+CREATE TABLE favoriteStationParamsEntity (
+    stationName TEXT PRIMARY KEY NOT NULL,
+    isAutoLocation TEXT DEFAULT "1" NOT NULL,
+    cityId TEXT DEFAULT "" NOT NULL,
+    stationId TEXT DEFAULT "" NOT NULL,
+    latitude TEXT DEFAULT "" NOT NULL,
+    longitude TEXT DEFAULT "" NOT NULL,
+    pcity TEXT DEFAULT "" NOT NULL,
+    parea TEXT DEFAULT "" NOT NULL
+);
+
+insertFull:
+INSERT INTO favoriteStationParamsEntity (
+    stationName,
+    isAutoLocation,
+    cityId,
+    stationId,
+    latitude,
+    longitude,
+    pcity,
+    parea
+) VALUES ?;
+
+selectAll:
+SELECT * FROM favoriteStationParamsEntity;
+
+selectByStationName:
+SELECT * FROM favoriteStationParamsEntity WHERE stationName = ?;
+
+deleteByStationName:
+DELETE FROM favoriteStationParamsEntity WHERE stationName = ?;
+
+
+
+
+

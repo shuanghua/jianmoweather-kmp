@@ -1,0 +1,19 @@
+CREATE TABLE alarmIconEntity (
+    id INTEGER PRIMARY KEY,
+    _cityId TEXT DEFAULT "" NOT NULL,
+    iconUrl TEXT DEFAULT "" NOT NULL,
+    name TEXT DEFAULT "" NOT NULL,
+    FOREIGN KEY (_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+);
+
+-- Indices
+CREATE INDEX idx_alarm_cityId ON alarmIconEntity (_cityId);
+
+insert:
+INSERT INTO alarmIconEntity (id, _cityId, iconUrl, name) VALUES (?, ?, ?, ?);
+
+insertFull:
+REPLACE INTO alarmIconEntity (id, _cityId, iconUrl, name) VALUES ?;
+
+selectAll:
+SELECT * FROM alarmIconEntity;

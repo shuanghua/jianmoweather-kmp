@@ -1,0 +1,16 @@
+product:
+  type: lib
+  platforms: [android, iosArm64, iosSimulatorArm64, iosX64]
+
+dependencies:
+  - ../base-lib
+  - ../model
+  - androidx.datastore:datastore-preferences-core:1.1.1
+  - androidx.datastore:datastore-core-okio:1.1.1
+
+settings:
+  kotlin:
+    serialization: json
+
+  android:
+    namespace: dev.shuanghua.weather.datastore
