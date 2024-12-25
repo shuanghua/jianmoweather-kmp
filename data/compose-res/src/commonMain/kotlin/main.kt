@@ -1,7 +1,7 @@
-import jianmoweather.data.compose_res.generated.resources.Res
-import jianmoweather.data.compose_res.generated.resources.favorite
-import jianmoweather.data.compose_res.generated.resources.more
-import jianmoweather.data.compose_res.generated.resources.weather
+import jianmoweather_kmp.data.compose_res.generated.resources.Res
+import jianmoweather_kmp.data.compose_res.generated.resources.favorite
+import jianmoweather_kmp.data.compose_res.generated.resources.more
+import jianmoweather_kmp.data.compose_res.generated.resources.weather
 import org.jetbrains.compose.resources.StringResource
 
 
