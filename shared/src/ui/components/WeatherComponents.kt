@@ -64,7 +64,7 @@ fun MainTemperature(
         modifier = modifier.padding(horizontal = 16.dp)
     ) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth(),
             //.padding(top = 8.dp, bottom = 8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -77,7 +77,7 @@ fun MainTemperature(
             )
 
             Text(
-                modifier = modifier.padding(vertical = 8.dp),
+                modifier = Modifier.padding(vertical = 8.dp),
                 text = weather.description,
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.titleMedium,
@@ -86,7 +86,7 @@ fun MainTemperature(
             if (weather.airQuality.isNotBlank()) {
                 TextButton(onClick = { openAirDetailsScreen(weather.cityId) }) {
                     AsyncImage(
-                        modifier = modifier.size(18.dp, 18.dp),
+                        modifier = Modifier.size(18.dp, 18.dp),
                         model = weather.airQualityIcon,
                         contentDescription = "空气质量"
                     )
@@ -94,7 +94,7 @@ fun MainTemperature(
                 }
             }
 
-            Spacer(modifier = modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedButton(
                 onClick = {
@@ -114,7 +114,7 @@ fun MainTemperature(
             }
         }
 
-        Spacer(modifier = modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
@@ -131,7 +131,7 @@ fun HorizontalListTitle(
         Text(
             text = title,
             style = MaterialTheme.typography.titleLarge,
-            modifier = modifier.padding(start = 16.dp)
+            modifier = Modifier.padding(start = 16.dp)
         )
     }
 }
@@ -158,7 +158,7 @@ fun OneItem(
             )
     ) {
         Text(text = topText, fontWeight = FontWeight.Bold)
-        Text(text = centerText, modifier.padding(vertical = 16.dp))
+        Text(text = centerText, Modifier.padding(vertical = 16.dp))
         Text(text = bottomText, fontWeight = FontWeight.Bold)
     }
 }
@@ -186,7 +186,7 @@ fun DayItem(
     ) {
         Text(text = topText, fontWeight = FontWeight.Bold)
         AsyncImage(// coil 异步下载网络图片
-            modifier = modifier
+            modifier = Modifier
                 .size(40.dp, 70.dp)
                 .padding(vertical = 16.dp)
                 .clip(shape = RoundedCornerShape(percent = 10)),
@@ -209,7 +209,7 @@ fun ConditionItem(
         shape = RoundedCornerShape(36.dp)
     ) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .width(148.dp)
                 .height(90.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -234,13 +234,13 @@ fun ExponentItem(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.width(300.dp)
+            modifier = Modifier.width(300.dp)
         ) {
             // 如果有图标在此处插入
             Text(
                 text = "$title · $levelDesc",
                 fontWeight = FontWeight.Bold,
-                modifier = modifier
+                modifier = Modifier
                     .weight(1f)
                     .padding(start = 16.dp),
                 textAlign = TextAlign.Start

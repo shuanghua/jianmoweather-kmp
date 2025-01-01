@@ -108,7 +108,7 @@ internal fun FavoritesWeatherScreen(
 		},
 	) { innerPadding ->
 		Box(
-			modifier
+			Modifier
 				.pullRefresh(pullRefreshState)
 				.fillMaxSize()
 		) {
@@ -120,7 +120,7 @@ internal fun FavoritesWeatherScreen(
 
 			)
 			PullRefreshIndicator(
-				modifier = modifier
+				modifier = Modifier
 					.align(Alignment.TopCenter)
 					.padding(innerPadding),
 				backgroundColor = MaterialTheme.colorScheme.onBackground,

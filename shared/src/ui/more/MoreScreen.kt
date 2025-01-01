@@ -112,7 +112,7 @@ fun MoreItem(
             .clickable { navigateToWeb(url) }
     ) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .align(Alignment.CenterStart)
                 .padding(start = 16.dp)
         ) {

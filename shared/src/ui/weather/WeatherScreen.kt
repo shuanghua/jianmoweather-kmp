@@ -57,7 +57,6 @@ internal fun WeatherRoute(
 @Composable
 internal fun WeatherScreen(
     uiState: WeatherUiState,
-    modifier: Modifier = Modifier,
     navigateToDistrictScreen: (String, String) -> Unit,
     openAirDetailsScreen: (String) -> Unit,
     addToFavorite: () -> Unit,
@@ -106,7 +105,7 @@ internal fun WeatherScreen(
         },
     ) { innerPadding ->
         Box(
-            modifier
+            Modifier
                 .pullRefresh(pullRefreshState)
                 .fillMaxSize()
         ) {
@@ -118,7 +117,7 @@ internal fun WeatherScreen(
                 openAirDetailsScreen = openAirDetailsScreen
             )
             PullRefreshIndicator(
-                modifier = modifier
+                modifier = Modifier
                     .align(Alignment.TopCenter)
                     .padding(innerPadding),
                 backgroundColor = MaterialTheme.colorScheme.onBackground,

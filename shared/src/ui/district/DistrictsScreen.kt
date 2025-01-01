@@ -78,7 +78,7 @@ internal fun DistrictsScreen(
 	) { innerPadding ->
 
 		Box(
-			modifier = modifier
+			modifier = Modifier
 				.pullRefresh(pullRefreshState)
 				.fillMaxSize()
 		) {
@@ -91,7 +91,7 @@ internal fun DistrictsScreen(
 			)
 
 			PullRefreshIndicator(
-				modifier = modifier
+				modifier = Modifier
 					.align(Alignment.TopCenter)
 					.padding(innerPadding),
 				backgroundColor = MaterialTheme.colorScheme.onBackground,
@@ -105,7 +105,7 @@ internal fun DistrictsScreen(
 				Text(
 					text = "该城市没有观测站点",
 					style = MaterialTheme.typography.headlineSmall,
-					modifier = modifier
+					modifier = Modifier
 						.align(Alignment.Center),
 					textAlign = TextAlign.Center
 				)

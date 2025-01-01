@@ -43,7 +43,7 @@ fun SingleChoiceItem(
         )
 
         Text(
-            modifier = modifier.padding(start = 16.dp),
+            modifier = Modifier.padding(start = 16.dp),
             text = text,
             style = MaterialTheme.typography.bodyLarge
         )

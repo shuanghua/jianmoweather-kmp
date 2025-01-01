@@ -27,5 +27,5 @@ fun AlarmIconList(
             AlarmIconsItem(iconUrl = alarm.iconUrl)
         }
     }
-    Spacer(modifier = modifier.height(24.dp))
+    Spacer(modifier = Modifier.height(24.dp))
 }
