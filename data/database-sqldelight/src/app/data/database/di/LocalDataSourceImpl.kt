@@ -19,7 +19,11 @@ internal class LocalDataSourceImpl(
 
     override fun observerWeather(): Flow<Weather> {
         database.apply {
-            val weatherFlow = weatherDao.selectAll().asFlow().map { it.executeAsOneOrNull() }
+            val weatherFlow = weatherDao.selectAll()
+                .asFlow()
+                .map {
+                it.executeAsOneOrNull()
+            }
             val onDayFlow = oneDayDao.selectAll().asFlow()
             val onHourFlow = oneHourDao.selectAll().asFlow()
             val alarmIconFlow = alarmIconDao.selectAll().asFlow()

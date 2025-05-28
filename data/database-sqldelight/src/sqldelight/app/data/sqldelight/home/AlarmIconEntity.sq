@@ -3,7 +3,8 @@ CREATE TABLE alarmIconEntity (
     _cityId TEXT DEFAULT "" NOT NULL,
     iconUrl TEXT DEFAULT "" NOT NULL,
     name TEXT DEFAULT "" NOT NULL,
-    FOREIGN KEY (_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+    weather_single INTEGER DEFAULT 1 NOT NULL,
+    FOREIGN KEY(weather_single) REFERENCES weatherEntity(single) ON DELETE CASCADE
 );
 
 -- Indices

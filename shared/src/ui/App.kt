@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -31,12 +30,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import app.data.model.ThemeConfig
-import favoriteStringResource
-import moreStringResource
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.KoinContext
 import org.koin.compose.viewmodel.koinViewModel
 import permissions.RequestLocationPermission
@@ -48,7 +43,6 @@ import ui.theme.AppBackground
 import ui.theme.JianMoTheme
 import ui.weather.weatherNavigation
 import ui.weather.weatherRoute
-import weatherStringResource
 
 
 @Composable
@@ -168,7 +162,7 @@ internal fun MainScreenNavigation(
     ) {
         bottomBarItems.forEach { item: MainScreenNavItem ->
             NavigationBarItem(
-                label = { Text(text = stringResource(item.labelRes)) },
+                label = { Text(text = item.labelRes) },
                 selected = selectedNavigation == item.screen,
                 onClick = { onNavigateToBottomBarDestination(item) },
                 icon = {
@@ -218,21 +212,22 @@ private fun NavController.currentScreenAsState(): State<String> {
  */
 sealed class MainScreenNavItem(
     val screen: String,
-    val labelRes: StringResource,
-    val contentDescriptionRes: StringResource
+    val labelRes: String,
+    val contentDescriptionRes: String
 ) {
     class ResourceIcon( //普通图片
         screen: String,
-        labelRes: StringResource,
-        contentDescriptionRes: StringResource,
+        labelRes: String,
+        contentDescriptionRes: String,
         val iconResId: DrawableResource,
         val selectedIconResId: DrawableResource? = null
     ) : MainScreenNavItem(screen, labelRes, contentDescriptionRes)
 
     class VectorIcon( //矢量图片
         screen: String,
-        labelRes: StringResource,
-        contentDescriptionRes: StringResource,
+//        labelRes: StringResource,
+        labelRes: String,
+        contentDescriptionRes: String,
         val iconImageVector: ImageVector,
         val selectedImageVector: ImageVector? = null
     ) : MainScreenNavItem(screen, labelRes, contentDescriptionRes)
@@ -241,22 +236,22 @@ sealed class MainScreenNavItem(
 private val bottomBarItems = listOf(// 收集 NavigationItem, 并设置对应 screen 、图标和文字
     MainScreenNavItem.VectorIcon(
         screen = favoritesNavigation,
-        labelRes = favoriteStringResource,
-        contentDescriptionRes = favoriteStringResource,
+        labelRes = "收藏",
+        contentDescriptionRes = "收藏",
         iconImageVector = Icons.Outlined.Favorite,
         selectedImageVector = Icons.Default.Favorite
     ),
     MainScreenNavItem.VectorIcon(
         screen = weatherNavigation,
-        labelRes = weatherStringResource,
-        contentDescriptionRes = weatherStringResource,
+        labelRes = "天气",
+        contentDescriptionRes = "天气",
         iconImageVector = Icons.Outlined.Home,
         selectedImageVector = Icons.Default.Home
     ),
     MainScreenNavItem.VectorIcon(
         screen = moreNavigation,
-        labelRes = moreStringResource,
-        contentDescriptionRes = moreStringResource,
+        labelRes = "更多",
+        contentDescriptionRes = "更多",
         iconImageVector = Icons.Outlined.Menu,
         selectedImageVector = Icons.Default.Menu
     )
@@ -288,13 +283,15 @@ private fun MainScreenNavItemIcon(item: MainScreenNavItem, selected: Boolean) {
         Crossfade(targetState = selected) {
             Icon(
                 painter = if (it) selectedPainter else painter,
-                contentDescription = stringResource(item.contentDescriptionRes)
+//                contentDescription = stringResource(item.contentDescriptionRes)
+                contentDescription = item.contentDescriptionRes
             )
         }
     } else {
         Icon(
             painter = painter,
-            contentDescription = stringResource(item.contentDescriptionRes)
+//            contentDescription = stringResource(item.contentDescriptionRes)
+            contentDescription = item.contentDescriptionRes
         )
     }
 }

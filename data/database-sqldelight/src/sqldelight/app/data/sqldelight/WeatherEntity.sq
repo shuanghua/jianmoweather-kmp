@@ -1,5 +1,6 @@
 CREATE TABLE weatherEntity (
-    cityId TEXT PRIMARY KEY DEFAULT '' NOT NULL,
+    single INTEGER PRIMARY KEY DEFAULT 1 NOT NULL,
+    cityId TEXT UNIQUE DEFAULT '' NOT NULL,
     cityName TEXT DEFAULT '' NOT NULL,
     temperature TEXT DEFAULT '' NOT NULL,
     description TEXT DEFAULT '' NOT NULL,
@@ -12,10 +13,9 @@ CREATE TABLE weatherEntity (
     sunDown TEXT DEFAULT '' NOT NULL
 );
 
-CREATE INDEX IF NOT EXISTS index_cityId ON weatherEntity(cityId);
-
 insertFullWeather:
 REPLACE INTO weatherEntity (
+    single,
     cityId,
     cityName,
     temperature,

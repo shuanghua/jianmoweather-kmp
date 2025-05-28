@@ -27,9 +27,11 @@ internal class WeatherRepositoryImpl(
 ) : WeatherRepository {
 
     override fun observerWeather(): Flow<Weather> {
-        return database.observerWeather().filterNotNull().onStart {
-            emit(previewWeather)
-        }
+        return database.observerWeather()
+            .filterNotNull()
+            .onStart {
+                emit(previewWeather)
+            }
     }
 
     /**

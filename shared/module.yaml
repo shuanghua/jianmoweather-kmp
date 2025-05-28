@@ -7,11 +7,11 @@ dependencies:
   - ../data/model
   - ../data/domain
   - ../data/repo
-  - ../data/compose-res
 
   - $compose.foundation: exported
   - $compose.material3: exported
   - $compose.material: exported
+  - $libs.compose.components.resources: exported
 
   - org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2: exported
   - org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10: exported
@@ -38,6 +38,9 @@ dependencies@android:
 settings:
   compose:
     enabled: true
+    resources:
+      package: dev.shuanghua.weather.shared.compose
+      exposedAccessors: true
 
   android:
     namespace: dev.shuanghua.weather.shared

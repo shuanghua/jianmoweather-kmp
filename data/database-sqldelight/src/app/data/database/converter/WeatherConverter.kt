@@ -9,10 +9,7 @@ import kotlin.jvm.JvmName
 internal fun List<AlarmIconEntity>.asAppModel(): List<AlarmIcon> {
     return this.map {
         AlarmIcon(
-            id = it.id.toInt(),
-            cityId = it._cityId,
-            iconUrl = it.iconUrl,
-            name = it.name
+            id = it.id.toInt(), cityId = it._cityId, iconUrl = it.iconUrl, name = it.name
         )
     }
 }
@@ -52,10 +49,7 @@ internal fun List<OneHourEntity>.asAppModel(): List<OneHour> {
 internal fun List<ConditionEntity>.asAppModel(): List<Condition> {
     return map {
         Condition(
-            id = it.id.toInt(),
-            cityId = it._cityId,
-            name = it.name,
-            value = it.desc
+            id = it.id.toInt(), cityId = it._cityId, name = it.name, value = it.desc
         )
     }
 }
@@ -87,6 +81,7 @@ internal fun List<ExponentEntity>.asAppModel(): List<Exponent> {
 //}
 
 internal fun Weather.asWeatherEntity() = WeatherEntity(
+    single = 1,
     cityId = cityId,
     cityName = cityName,
     temperature = temperature,
@@ -107,7 +102,8 @@ internal fun Weather.asAlarmIconEntity(): List<AlarmIconEntity> {
             id = it.id.toLong(),
             _cityId = it.cityId,
             iconUrl = it.iconUrl,
-            name = it.name
+            name = it.name,
+            weather_single = 1,
         )
     }
 }
@@ -120,7 +116,8 @@ internal fun Weather.asOneHourEntityList(): List<OneHourEntity> {
             hour = it.hour,
             t = it.t,
             icon = it.icon,
-            rain = it.rain
+            rain = it.rain,
+            weather_single = 1
         )
     }
 }
@@ -136,8 +133,10 @@ internal fun Weather.asOneDayEntityList(): List<OneDayEntity> {
             t = it.t,
             minT = it.minT,
             maxT = it.maxT,
-            iconName = it.iconUrl
-        )
+            iconName = it.iconUrl,
+            weather_single = 1,
+
+            )
     }
 }
 
@@ -147,8 +146,10 @@ internal fun Weather.asConditionEntityList(): List<ConditionEntity> {
             id = it.id.toLong(),
             _cityId = it.cityId,
             name = it.name,
-            desc = it.value
-        )
+            desc = it.value,
+            weather_single = 1,
+
+            )
     }
 }
 
@@ -160,7 +161,8 @@ internal fun Weather.asExponentEntityList(): List<ExponentEntity> {
             title = it.title,
             level = it.level,
             levelDesc = it.levelDesc,
-            levelAdvice = it.levelAdvice
+            levelAdvice = it.levelAdvice,
+            weather_single = 1,
         )
     }
 }

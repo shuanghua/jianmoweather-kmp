@@ -1,13 +1,14 @@
 CREATE TABLE oneHourEntity (
     id INTEGER PRIMARY KEY NOT NULL,
     _cityId TEXT DEFAULT '' NOT NULL,
+    weather_single INTEGER DEFAULT 1 NOT NULL,
     hour TEXT DEFAULT '' NOT NULL,
     t TEXT DEFAULT '' NOT NULL,
     icon TEXT DEFAULT '' NOT NULL,
     rain TEXT DEFAULT '' NOT NULL,
 
     -- 外键约束
-    FOREIGN KEY(_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+    FOREIGN KEY(weather_single) REFERENCES weatherEntity(single) ON DELETE CASCADE
 );
 
 -- 为 _cityId 列创建索引

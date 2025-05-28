@@ -2,13 +2,14 @@ CREATE TABLE oneDayEntity (
     id INTEGER PRIMARY KEY,
     _cityId TEXT DEFAULT "" NOT NULL,
     date TEXT DEFAULT "" NOT NULL,
+    weather_single INTEGER DEFAULT 1 NOT NULL,
     week TEXT DEFAULT "" NOT NULL,
     desc TEXT DEFAULT "" NOT NULL,
     t TEXT DEFAULT "" NOT NULL,
     minT TEXT DEFAULT "" NOT NULL,
     maxT TEXT DEFAULT "" NOT NULL,
     iconName TEXT DEFAULT "" NOT NULL,
-    FOREIGN KEY (_cityId) REFERENCES weatherEntity(cityId) ON DELETE CASCADE
+    FOREIGN KEY(weather_single) REFERENCES weatherEntity(single) ON DELETE CASCADE
 );
 
 -- 索引
