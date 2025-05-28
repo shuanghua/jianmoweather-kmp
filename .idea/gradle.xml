@@ -4,6 +4,7 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
@@ -12,7 +13,6 @@
             <option value="$PROJECT_DIR$/android-app" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/base-lib" />
-            <option value="$PROJECT_DIR$/data/compose-res" />
             <option value="$PROJECT_DIR$/data/database-room" />
             <option value="$PROJECT_DIR$/data/database-sqldelight" />
             <option value="$PROJECT_DIR$/data/datastore" />

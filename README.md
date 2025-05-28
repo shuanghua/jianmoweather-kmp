@@ -29,7 +29,7 @@
 
 
 ### 开发工具
-IntelliJ IDEA 2024.2.1
+Android Studio 2024.3.2
 
 
 
