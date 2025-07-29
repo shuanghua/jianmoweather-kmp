@@ -10,6 +10,7 @@ import app.data.model.FavoriteCity
 import app.data.model.FavoriteStationParams
 import app.data.repo.FavoritesRepository
 import collectStatus
+import exception.AppLog
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -99,8 +100,12 @@ class FavoritesViewModel(
     }
 
     fun deleteStation(stationName: String) {
+        AppLog.d("deleteStation: $stationName")
         viewModelScope.launch {
-            val newStations = stations.filterNot { it.stationName == stationName }
+            val newStations = stations.filterNot {
+                it.stationName == stationName
+            }
+            AppLog.d("newStations: $newStations")
             stations.clear()
             stations.addAll(newStations)
             favoriteRepository.deleteFavoriteStation(stationName)

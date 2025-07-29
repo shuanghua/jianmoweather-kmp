@@ -20,4 +20,8 @@ SELECT * FROM stationEntity
 WHERE stationName = ?;
 
 
+insertOrReplace:
+INSERT OR REPLACE INTO stationEntity (districtName, stationId, stationName, isSelected) VALUES ?;
+
+
 

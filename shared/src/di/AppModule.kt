@@ -37,5 +37,4 @@ val appModule = module {
     viewModelOf(::FavoritesDetailViewModel)
     viewModelOf(::ProvincesViewModel)
     viewModelOf(::CitiesViewModel)
-
 }

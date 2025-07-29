@@ -28,6 +28,14 @@
 
 
 
+### android-app
+MainActivity(android-app) ->  App(shared) 
+
+### shared
+App.kt [android-app 和 ios-app 的公共入口]
+包含导航, 公共数据, ViewModel, 依赖注入
+
+
 ### 开发工具
 Android Studio 2024.3.2
 

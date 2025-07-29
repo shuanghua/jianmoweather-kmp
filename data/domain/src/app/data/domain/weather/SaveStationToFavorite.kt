@@ -22,10 +22,13 @@ class SaveStationToFavorite(
 		// 因为服务器接口现在不返回站点id了，所以只能通过站点名来获取站点id
 		// 但如果用户没有打开过站点列表，也无法通过站点名来获取站点id
 		// 所以改成存储请求参数
-		Napier.d("SaveStationToFavoriteUseCase 保存站点: $cityId, $stationName")
 
 		val location = locationRepository.getLocalLocationData() // datastore
+
+		// 如果是非深圳地区, 从该表查询的 stationId 会是 null
 		val stationId = stationRepository.getStationIdByName(stationName) // database station 表获取
+		println("SaveStationToFavoriteUseCase 保存站点: $cityId, $stationName, $stationId")
+
 		val stationWeatherParams = if (stationId == null) {
 			FavoriteStationParams(
 				isAutoLocation = "1",
@@ -44,6 +47,7 @@ class SaveStationToFavorite(
 				stationId = stationId
 			)
 		}
+		Napier.d("SaveStationToFavoriteUseCase 保存站点: $cityId, $stationName, $stationId")
 
 		favoriteRepository.saveFavoriteStation(stationWeatherParams)
 	}

@@ -36,129 +36,129 @@ import ui.components.AppTextItem
 
 @Composable
 fun DistrictsRoute(
-	onBackClick: () -> Unit,
-	navigateToStationScreen: (String) -> Unit,
-	viewModel: DistrictsViewModel = koinViewModel(),
+    onBackClick: () -> Unit,
+    navigateToStationScreen: (String) -> Unit,
+    viewModel: DistrictsViewModel = koinViewModel(),
 ) {
-	val uiState: DistrictListUiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState: DistrictListUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-	DistrictsScreen(
-		uiState = uiState,
-		updateDistrictList = { viewModel.refresh() },
-		onBackClick = onBackClick,
-		openStationScreen = navigateToStationScreen
-	)
+    DistrictsScreen(
+        uiState = uiState,
+        updateDistrictList = { viewModel.refresh() },
+        onBackClick = onBackClick,
+        openStationScreen = navigateToStationScreen
+    )
 }
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun DistrictsScreen(
-	uiState: DistrictListUiState,
-	updateDistrictList: () -> Unit,
-	openStationScreen: (String) -> Unit,
-	onBackClick: () -> Unit,
-	modifier: Modifier = Modifier
+    uiState: DistrictListUiState,
+    updateDistrictList: () -> Unit,
+    openStationScreen: (String) -> Unit,
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-	val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
-	val pullRefreshState = rememberPullRefreshState(
-		refreshing = uiState.isLoading,
-		onRefresh = updateDistrictList,
-		refreshThreshold = 64.dp, //  拉动超过 60.dp 时,松开则触发自动转圈
-		refreshingOffset = 56.dp  // 当松开，转圈的位置
-	)
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = uiState.isLoading,
+        onRefresh = updateDistrictList,
+        refreshThreshold = 64.dp, //  拉动超过 60.dp 时,松开则触发自动转圈
+        refreshingOffset = 56.dp  // 当松开，转圈的位置
+    )
 
-	Scaffold(
-		topBar = {
-			DistrictTopBar(
-				scrollBehavior = scrollBehavior,
-				onBackClick = onBackClick
-			)
-		}
-	) { innerPadding ->
+    Scaffold(
+        topBar = {
+            DistrictTopBar(
+                scrollBehavior = scrollBehavior,
+                onBackClick = onBackClick
+            )
+        }
+    ) { innerPadding ->
 
-		Box(
-			modifier = Modifier
-				.pullRefresh(pullRefreshState)
-				.fillMaxSize()
-		) {
+        Box(
+            modifier = Modifier
+                .pullRefresh(pullRefreshState)
+                .fillMaxSize()
+        ) {
 
-			DistrictList(
-				districtList = uiState.districtList,
-				scrollBehavior = scrollBehavior,
-				innerPadding = innerPadding,
-				openStationScreen = openStationScreen
-			)
+            DistrictList(
+                districtList = uiState.districtList,
+                scrollBehavior = scrollBehavior,
+                innerPadding = innerPadding,
+                openStationScreen = openStationScreen
+            )
 
-			PullRefreshIndicator(
-				modifier = Modifier
-					.align(Alignment.TopCenter)
-					.padding(innerPadding),
-				backgroundColor = MaterialTheme.colorScheme.onBackground,
-				contentColor = MaterialTheme.colorScheme.background,
-				scale = true,
-				refreshing = uiState.isLoading,
-				state = pullRefreshState
-			)
+            PullRefreshIndicator(
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(innerPadding),
+                backgroundColor = MaterialTheme.colorScheme.onBackground,
+                contentColor = MaterialTheme.colorScheme.background,
+                scale = true,
+                refreshing = uiState.isLoading,
+                state = pullRefreshState
+            )
 
-			if (uiState.districtList.isEmpty()) {
-				Text(
-					text = "该城市没有观测站点",
-					style = MaterialTheme.typography.headlineSmall,
-					modifier = Modifier
-						.align(Alignment.Center),
-					textAlign = TextAlign.Center
-				)
-			}
-		}
-	}
+            if (uiState.districtList.isEmpty() && !uiState.isLoading) {
+                Text(
+                    text = "该城市没有观测站点",
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier
+                        .align(Alignment.Center),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DistrictList(
-	districtList: List<District>,
-	scrollBehavior: TopAppBarScrollBehavior,
-	innerPadding: PaddingValues,
-	openStationScreen: (String) -> Unit,
-	modifier: Modifier = Modifier
+    districtList: List<District>,
+    scrollBehavior: TopAppBarScrollBehavior,
+    innerPadding: PaddingValues,
+    openStationScreen: (String) -> Unit,
+    modifier: Modifier = Modifier
 
 ) {
-	LazyColumn(
-		contentPadding = innerPadding,
-		verticalArrangement = Arrangement.spacedBy(16.dp),
-		modifier = modifier
-			.nestedScroll(scrollBehavior.nestedScrollConnection)
-			.fillMaxSize()
-	) {
-		items(
-			items = districtList,
-			key = { district -> district.name }
-		) { district ->
-			AppTextItem(
-				text = district.name,
-				onClick = { openStationScreen(district.name) }
-			)
-		}
-	}
+    LazyColumn(
+        contentPadding = innerPadding,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
+            .fillMaxSize()
+    ) {
+        items(
+            items = districtList,
+            key = { district -> district.name }
+        ) { district ->
+            AppTextItem(
+                text = district.name,
+                onClick = { openStationScreen(district.name) }
+            )
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DistrictTopBar(
-	scrollBehavior: TopAppBarScrollBehavior,
-	onBackClick: () -> Unit,
+    scrollBehavior: TopAppBarScrollBehavior,
+    onBackClick: () -> Unit,
 ) {
-	CenterAlignedTopAppBar(
-		scrollBehavior = scrollBehavior,
-		title = { Text(text = "区县") },
-		navigationIcon = {
-			IconButton(onClick = onBackClick) {
-				Icon(
-					imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-					contentDescription = "返回"
-				)
-			}
-		}
-	)
+    CenterAlignedTopAppBar(
+        scrollBehavior = scrollBehavior,
+        title = { Text(text = "区县") },
+        navigationIcon = {
+            IconButton(onClick = onBackClick) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "返回"
+                )
+            }
+        }
+    )
 }

@@ -2,8 +2,26 @@ package app.data.database.di
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.data.database.LocalDataSource
-import app.data.database.converter.*
-import app.data.model.*
+import app.data.database.converter.asAlarmIconEntity
+import app.data.database.converter.asAppFavoriteCityEntity
+import app.data.database.converter.asAppModel
+import app.data.database.converter.asConditionEntityList
+import app.data.database.converter.asEntity
+import app.data.database.converter.asExponentEntityList
+import app.data.database.converter.asOneDayEntityList
+import app.data.database.converter.asOneHourEntityList
+import app.data.database.converter.asWeatherEntity
+import app.data.model.City
+import app.data.model.District
+import app.data.model.FavoriteCity
+import app.data.model.FavoriteCityWeather
+import app.data.model.FavoriteStationParams
+import app.data.model.FavoriteStationWeather
+import app.data.model.Province
+import app.data.model.SelectedStation
+import app.data.model.Station
+import app.data.model.Weather
+import app.data.model.previewWeather
 import app.data.sqldelight.WeatherEntity
 import dev.shuanghua.weather.shared.combine
 import exception.AppLog
@@ -22,8 +40,8 @@ internal class LocalDataSourceImpl(
             val weatherFlow = weatherDao.selectAll()
                 .asFlow()
                 .map {
-                it.executeAsOneOrNull()
-            }
+                    it.executeAsOneOrNull()
+                }
             val onDayFlow = oneDayDao.selectAll().asFlow()
             val onHourFlow = oneHourDao.selectAll().asFlow()
             val alarmIconFlow = alarmIconDao.selectAll().asFlow()
@@ -127,7 +145,8 @@ internal class LocalDataSourceImpl(
         database.stationDao.apply {
             transaction {
                 stations.forEach { station ->
-                    insertFull(station.asEntity())
+//                    insertFull(station.asEntity())
+                    insertOrReplace(station.asEntity())
                 }
             }
         }
@@ -155,10 +174,14 @@ internal class LocalDataSourceImpl(
 
     // 根据观测站点名称获取观测站点ID
     override suspend fun getStationIdByName(stationName: String): String? = catchCall {
-        database.stationDao
-            .selectByStationName(stationName)
-            .executeAsOneOrNull()
-            ?.stationId
+        val result = database.stationDao
+            .selectByStationName(stationName).executeAsList()
+        // 收藏站点永远不要存储 G0000 自动定位的站点id, 如果需要存储自动定位的非深圳城市,则存储其请求参数(不需要站点id)
+        when {
+            result.isEmpty() -> null
+            result[0].stationId != "G0000" -> result[0].stationId
+            else -> result[1].stationId
+        }
     }
 
     // SelectedStation 用于记录上次使用的观测站点

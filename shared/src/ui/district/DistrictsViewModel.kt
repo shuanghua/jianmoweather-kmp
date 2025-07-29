@@ -28,7 +28,7 @@ class DistrictsViewModel(
 ) : ViewModel() {
 
 	private val cityId: String = checkNotNull(savedStateHandle[cityIdArg])
-	private val stationName: String = checkNotNull(savedStateHandle[stationNameArg])
+//	private val stationName: String = checkNotNull(savedStateHandle[stationNameArg])
 
 	private val observerLoading = ObservableLoadingCounter()
 	private val uiMessageManager = UiMessageManager()
@@ -79,7 +79,7 @@ data class DistrictListUiState(
 	val uiMessage: UiMessage? = null,
 	val isLoading: Boolean = false,
 ) {
-	companion object {
+	companion object {// 默认值
 		val Empty = DistrictListUiState()
 	}
 }

@@ -67,7 +67,6 @@ fun FavoritesRoute(
 @Composable
 fun FavoritesScreen(
     uiState: FavoriteUiState,
-    modifier: Modifier = Modifier,
     onDeleteStation: (String) -> Unit,
     onDeleteCity: (String) -> Unit,
     openProvinceScreen: () -> Unit,
@@ -284,7 +283,7 @@ fun FavoriteStationItem(
                     onDismiss = { openDeleteStationDialog.value = false },
                     onDelete = {
                         openDeleteStationDialog.value = false
-                        onDeleteStation(station.stationName)
+                        onDeleteStation(station.stationName)// 数据源是天气数据中的站点, 而不是站点列表提供的站点
                     }
                 )
             }

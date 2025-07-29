@@ -15,7 +15,7 @@ class UpdateDistrictUseCase(
 	data class Params(val cityId: String)
 
 	override suspend fun doWork(params: Params): Unit = withContext(dispatchers.io) {
-		val location = locationRepo.getLocalLocationData() // datastore
+		val location = locationRepo.getLocalLocationData() // 从 datastore 或去经纬度信息
 		stationRepo.updateStationWithDistrict(
 			cityId = params.cityId,
 			stationId = "",

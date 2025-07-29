@@ -8,7 +8,12 @@ import androidx.lifecycle.viewModelScope
 import app.data.model.SelectedStation
 import app.data.model.Station
 import app.data.repo.StationRepository
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -25,7 +30,6 @@ class StationsViewModel(
     private val districtName: String = checkNotNull(savedStateHandle[districtNameArg])
 
     private val viewModelState = MutableStateFlow(ViewModelState(isLoading = true))
-
     val uiState: StateFlow<StationsUiState> =
         viewModelState.map(ViewModelState::toUiState)
             .stateIn(
@@ -45,6 +49,7 @@ class StationsViewModel(
                             it.copy(isLoading = false, errorMessage = errorMessage)
                         }
                     } else {
+                        println("数据库有站点数据:$districtName->$stationList")
                         viewModelState.update {
                             it.copy(isLoading = false, stationList = stationList)
                         }
